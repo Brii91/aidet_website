@@ -8,21 +8,21 @@ const validateContactForm = (data) => {
   const { name, email, message } = data;
   const errors = [];
 
-  // Validate name
+  // Validar nombre
   if (!name?.trim()) {
     errors.push('El nombre es obligatorio');
   } else if (name.trim().length < 2) {
     errors.push('El nombre debe tener al menos 2 caracteres');
   }
 
-  // Validate email
+  // Validar email
   if (!email?.trim()) {
     errors.push('El email es obligatorio');
   } else if (!validateEmail(email.trim())) {
     errors.push('El formato del email no es válido');
   }
 
-  // Validate message
+  // Validar mensaje
   if (!message?.trim()) {
     errors.push('El mensaje es obligatorio');
   } else if (message.trim().length < 10) {
