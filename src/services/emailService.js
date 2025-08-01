@@ -3,12 +3,12 @@ const config = require('../config/app');
 
 class EmailService {
   /**
-   * Send contact form email
-   * @param {Object} contactData - Contact form data
-   * @param {string} contactData.name - Contact name
-   * @param {string} contactData.email - Contact email
-   * @param {string} contactData.message - Contact message
-   * @returns {Promise<Object>} Email send result
+   * Enviar email del formulario de contacto
+   * @param {Object} contactData 
+   * @param {string} contactData.name 
+   * @param {string} contactData.email 
+   * @param {string} contactData.message 
+   * @returns {Promise<Object>} 
    */
   static async sendContactEmail(contactData) {
     const { name, email, message } = contactData;
@@ -24,28 +24,28 @@ class EmailService {
 
     try {
       const result = await transporter.sendMail(mailOptions);
-      console.log('✅ Email enviado exitosamente:', result.messageId);
+      console.log('Email enviado exitosamente:', result.messageId);
       return {
         success: true,
         messageId: result.messageId
       };
     } catch (error) {
-      console.error('❌ Error al enviar email:', error);
+      console.error('Error al enviar email:', error);
       throw new Error('Error al enviar el email');
     }
   }
 
   /**
-   * Test email service
-   * @returns {Promise<boolean>} Test result
+   * Testear el servicio de email
+   * @returns {Promise<boolean>} Resultado de la prueba
    */
   static async testConnection() {
     try {
       await transporter.verify();
-      console.log('✅ Email service conectado correctamente');
+      console.log('Email service conectado correctamente');
       return true;
     } catch (error) {
-      console.error('❌ Error en email service:', error);
+      console.error('Error en email service:', error);
       return false;
     }
   }

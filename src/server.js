@@ -4,7 +4,7 @@ const path = require('path');
 const config = require('./config/app');
 const contactRoutes = require('./routes/contactRoutes');
 
-// Initialize Express app
+// Inicializar la app de Express
 const app = express();
 
 // Middleware
@@ -12,13 +12,13 @@ app.use(cors(config.cors));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from public directory
+// Servir archivos estáticos desde el directorio public
 app.use(express.static(path.join(__dirname, config.static.path)));
 
 // API Routes
 app.use('/api', contactRoutes);
 
-// Health check endpoint
+// Endpoint de health
 app.get('/health', (req, res) => {
   res.json({
     status: 'OK',
@@ -27,12 +27,12 @@ app.get('/health', (req, res) => {
   });
 });
 
-// SPA fallback - serve index.html for all other routes
+// SPA fallback - servir index.html para todas las rutas restantes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, config.static.path, 'index.html'));
 });
 
-// Error handling middleware
+// Manejo de errores middleware
 app.use((error, req, res, next) => {
   console.error('❌ Error no manejado:', error);
   res.status(500).json({
@@ -41,19 +41,17 @@ app.use((error, req, res, next) => {
   });
 });
 
-// Start server
+// Iniciar el servidor
 const startServer = () => {
   app.listen(config.port, () => {
-    console.log('🚀 Servidor AIDET iniciado');
-    console.log(`📍 Puerto: ${config.port}`);
-    console.log(`🌍 Entorno: ${config.nodeEnv}`);
-    console.log(`📧 Email: ${config.email.from}`);
-    console.log(`🔗 URL: http://localhost:${config.port}`);
-    console.log(`💚 Health: http://localhost:${config.port}/health`);
+    console.log('Servidor AIDET iniciado');
+    console.log(`Puerto: ${config.port}`);
+    console.log(`Entorno: ${config.nodeEnv}`);
+    console.log(`URL: http://localhost:${config.port}`);
   });
 };
 
-// Handle graceful shutdown
+// Manejo de graceful
 process.on('SIGTERM', () => {
   console.log('🛑 Recibida señal SIGTERM, cerrando servidor...');
   process.exit(0);
@@ -64,5 +62,5 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
-// Start the server
+// Iniciar el servidor
 startServer(); 

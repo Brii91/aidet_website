@@ -3,10 +3,10 @@ const ContactController = require('../controllers/contactController');
 
 const router = express.Router();
 
-// Contact form submission
+// Envío del formulario de contacto
 router.post('/contact', ContactController.submitContact);
 
-// Health check endpoint
+// Endpoint de health
 router.get('/health', ContactController.healthCheck);
 
 module.exports = router; 
