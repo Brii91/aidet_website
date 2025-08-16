@@ -72,7 +72,7 @@ const createEmailTemplate = (name, email, message) => `
         <!-- Footer -->
         <div style="background-color: #012970; padding: 25px; text-align: center;">
             <p style="color: #ffffff; margin: 0; font-size: 12px; opacity: 0.8;">
-                © 2024 AIDET - Adaptive Intelligent Digital Engineering Tutor<br>
+                © 2025 AIDET - Adaptive Intelligent Digital Engineering Tutor<br>
                 Todos los derechos reservados
             </p>
         </div>
